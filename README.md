@@ -1,2 +1,3 @@
 # euler
-Solutions to Project Euler problems, with a focus on zero-runtime execution speed
+Solutions to Project Euler problems in C++, with a goal of zero-runtime execution speed for each.
+
