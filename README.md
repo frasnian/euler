@@ -1,5 +1,4 @@
-# euler
+# Euler Zero
 Solutions to Project Euler problems in C++, with a goal of zero-runtime execution speed for each one.
 
-For details about this repo and individual problems, see the wiki page at https://github.com/frasnian/euler-zero/wiki.
-
+The wiki page at https://github.com/frasnian/euler-zero/wiki has details about this repo and (in some cases) the approach I had to individual problems.
