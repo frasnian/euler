@@ -1,5 +1,5 @@
-// euler001-poc.cpp:
-// Euler Zero, Problem 1 - calculation at runtime version
+// euler001-cax.cpp:
+// Euler Zero, Problem 1 - calculation at execution version
 // 
 // Copyright (c) 2015,2016 David Starr
 //
