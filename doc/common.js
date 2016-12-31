@@ -94,7 +94,7 @@ function pageFooterContent(bIsSolutionPage){
     if (bIsSolutionPage){
         s += '<p align="center"><br/><a href="../../doc/index.html">Documentation Home</a></p>';
     }
-    s += '<p align="center" class="footer_notices"><a href="https://github.com/frasnian/euler-zero/wiki/License">Copyright &amp License Info</a> <b>&nbsp; | &nbsp;</b> <a href="https://github.com/frasnian/euler-zero/wiki/Contact">Contact</a></p>';
+    s += '<p align="center" class="footer_notices"><a href="https://github.com/frasnian/euler-zero/wiki/License" target="_blank">Copyright &amp License Info</a> <b>&nbsp; | &nbsp;</b> <a href="https://github.com/frasnian/euler-zero/wiki/Contact-Info" target="_blank">Contact</a></p>';
   
     return s;
 }
