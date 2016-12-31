@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2015,2016 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero project - Documentation</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+<script type="text/javascript" src="euler-zero-problems.js"></script>
+<script language="javascript"><!--
+function indexPageSetup()
+{
+    var sOut = '<table>';
+    
+    sOut +='<tr>'
+         + '<td><b>Problem</b></td>'
+         + '<td style="padding-left:10px;"><b>Description</b></td>'
+         + '<td style="padding-left:10px;"><b>Links</b></td>'
+         + '</tr>'
+         ;
+    for (var i = 0; i < EulerZeroProblems.length; ++i){
+        sOut+= '<tr>'
+            +  '<td align="right">' +parseInt(EulerZeroProblems[i].problemNumber) + '</td>'
+            +  '<td style="padding-left:10px;">' +EulerZeroProblems[i].name+ '</td>'
+            +  '<td style="padding-left:10px;">' 
+                + '<a href="../src/problem' +EulerZeroProblems[i].problemNumber+ '/readme-' +EulerZeroProblems[i].problemNumber+ '.html">readme</a> | '
+                + '<a href="' +preferences.wikiHome+ "Problem" +EulerZeroProblems[i].problemNumber+ '">wiki page</a> | '
+                + '<a href="https://projecteuler.net/problem=' +parseInt(EulerZeroProblems[i].problemNumber)+ '">Original problem page at Project Euler web site</a>'
+            + '</td>'
+            +  '<tr/>'
+        ;
+    }
+    sOut += '</table>';
+    document.getElementById("EZeroSolutionIndex").innerHTML = sOut;
+}
+--></script>
+
+</head>
+<body onload="indexPageSetup()">
+<h1>Euler Zero - Documentation Home</h1><p>
+<p>This is a for-my-own-amusement project to develop zero-runtime solutions in C++ to the problems from <a href="https://projecteuler.net/" target="_blank">Project Euler</a>.  The full Euler Zero project repository, accompanying documentation and a <a href="http://github.com/frasnian/euler-zero/wiki/">project wiki</a> are availble on GitHub, at <a href="http://github.com/frasnian/euler-zero/">http://github.com/frasnian/euler-zero/</a>.
+</p>
+
+<div id="EZeroSolutionIndex"></div>
+
+<div id="contact_info"></div>
+<div id="copyright"></div>
+</p>
+</body>
+</html>
