@@ -176,7 +176,7 @@ function regenerateBuildCommands(setDiv){
         }
         var v = supportedVariants[i];
         for (var comp = 0; comp < v.supportedCompilers.length; ++comp){
-            var compilerAndVersion = v.supportedCompilers[comp].split('/');
+            var compilerAndVersion = v.supportedCompilers[comp].split(';');
             var compilerTag = compilerAndVersion[0];
             var compilerVersion = compilerAndVersion[1];
 

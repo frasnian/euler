@@ -60,6 +60,9 @@ code {
     margin-left: 20px;
     color:#000050;
 }
+.problem_statement p{
+    color:#000050;
+}
 
 td {
     font-family: "Arial New", Helvetica, sans-serif;
