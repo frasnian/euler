@@ -33,7 +33,7 @@ var CompilerInformation = [
     new CompilerInfo("clang", "clang", "clang", "--std=", "-S", "-D", "-o", "-lstdc++", stdAlwaysOnOptions),
     new CompilerInfo("clangxx", "clang++", "clang++", "--std=", "-S", "-D", "-o", "", stdAlwaysOnOptions),
     new CompilerInfo("intel", "Intel C++", "icc", "--std=", "-S", "-D", "-o", "-lstdc++", stdAlwaysOnOptions),
-    new CompilerInfo("msvc", "Visual C++", "cl", "", "/Fa", "/D", "", "", "/EHsc /W4 /WX /O2 /Ox /Ot ")
+    new CompilerInfo("msvc", "Visual C++", "cl", "", "/Fa", "/D", "/Fe", "", "/EHsc /W4 /WX /O2 /Ox /Ot ")
 ];
 
 // these must be global for some versions of firefox
