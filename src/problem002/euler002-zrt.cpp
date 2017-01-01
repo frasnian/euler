@@ -40,6 +40,11 @@ constexpr unsigned SumEvenFibs(const unsigned lim)
 unsigned long sum = SumEvenFibs(4000000);
 
 #ifdef BUILD_ZRT_MAIN
+
+#ifdef EULER_ZERO_CAX
+#undef constexpr        // so MS headers don't choke
+#endif
+
 #include <iostream>
 int main()
 {
