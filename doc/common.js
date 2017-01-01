@@ -161,15 +161,16 @@ function copyToClipboard(sCommandLineElement)
 }
 
 function regenerateBuildCommands(setDiv){
-    var sOut = "<br/><table>";
+    var sOut = '<br/><table>';
     var sBuildNotes = "";
 
     // output generation
     var outputAsm = document.getElementById("generate_asm").checked;
     // options...
     var godbolt = document.getElementById("opt_godbolt").checked;
-    
-    sOut+= '<tr><td class="bld_command_table_hdr"><b>Compiler</b></td><td class="bld_command_table_hdr"><b>Version</b></td><td class="bld_command_table_hdr"><b>Build Command Line<b></td><td></td></tr>';
+    var compilerNotes = new Array;
+
+    sOut+= '<tr><td class="bld_command_table_hdr"><b>Compiler</b></td><td class="bld_command_table_hdr"><b>Version</b></td><td class="bld_command_table_hdr"><b>Build Command Line<b></td><td></td><td></td></tr>';
     for (var i = 0; i < supportedVariants.length; ++i){
         if (buildVariant != i){
             continue;
@@ -182,31 +183,52 @@ function regenerateBuildCommands(setDiv){
 
             if ((document.getElementById("compilers_all").checked) || compilerTag == preferences.defaultCompiler){
                 var compilerAdditionalOptions = compilerAndVersion[2];
+                var compilerAdditionalNote = compilerAndVersion[3];
                 
                 var compilerInfo = lookupCompilerInfoByTag(compilerTag);
-                
+                               
                 sOut += '<tr><td nowrap>' +compilerInfo.friendlyName+ '</td>' 
                  +  '<td>(' +compilerVersion+  ")" +'</td>'
                  +  '<td id="' +compilerInfo.ident+ i  + '"><code>' 
                  +      generateBuildCommandLine(v, compilerInfo, compilerAdditionalOptions, outputAsm, godbolt)+ '</code>'
                  + '</td>'
-                + '<td><button id = "btn_' +compilerInfo.ident + i + '\" style="border:0;height:19px;" title="Copy command line to clipboard" '
+                 + '<td><button id = "btn_' +compilerInfo.ident + i + '\" style="border:0;height:19px;" title="Copy command line to clipboard" '
                     + 'onclick="copyToClipboard(\'' +compilerInfo.ident + i  + '\')">'
                     + '<img src="../../doc/copy2clipboard-sm2.png"></button'
                 +'</td>'
-                +  '</tr>'
                 ;
+                if (compilerAdditionalNote){
+                    sOut += '<td text-align="center"  align="center" valign="center" style="background-image:url(../../doc/icon-note-sm.png);background-repeat:no-repeat;background-position:center;width:22px;height:18px;cursor: default;vertical-align: middle;background-vertical-align: middle;"'
+                    ;
+                    var newNote = true;
+                    for (var existingNote = 0; existingNote < compilerNotes.length; ++existingNote){
+                        if (compilerNotes[existingNote] == compilerAdditionalNote){
+                            sOut += ' title="Note ' +compilerNotes.length+ '">' + (existingNote+1) +"&nbsp;";
+                            newNote = false;
+                        }
+                    }
+                    if (newNote){
+                        compilerNotes.push(compilerAdditionalNote);
+                        sOut += ' title="Note ' +compilerNotes.length+ '">' + compilerNotes.length +"&nbsp;";
+                    }
+                    sOut += '</td>';
+                }
+                else{
+                    sOut += '<td></td>';
+                }
+                
+                sOut += '</tr>';
             }
         }
     }
-    sOut += '</table>';
-    
-    // Build notes:
-/*    
-    if (godbolt && !outputAsm){
-        sOut += "<b>note:</b> you will have to remove the '<code><i>#ifdef BUILD_ZRT_MAIN</i></code>' section after pasting the source file into Compiler Explorer - it cannot accept source with a pathed <code>#include</code> directive.";
+    if (compilerNotes.length){
+        sOut += '<tr><td align="right"><b>Notes:</b></td><td colspan="4"></td></tr>';
+        for (var note = 0; note < compilerNotes.length; ++note){
+            sOut += '<tr><td align="right">' +(note+1)+ ') </td><td colspan="2"> ' +compilerNotes[note]+ '</td><td></td><td></td></tr>';
+        }
     }
-*/
+    sOut += '</table>';  
+    
     if (setDiv){
         buildCommands.innerHTML = sOut;
     }
