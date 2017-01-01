@@ -32,6 +32,9 @@ struct PrevMultiple<term> {
 long lSum = PrevMultiple<limit-1>::sum;
 
 #ifdef BUILD_ZRT_MAIN
-#include "../misc/zrt_main.cpp"
-ZRT_MAIN(lSum)
+#include <iostream>
+int main()
+{
+    std::cout << sum << std::endl;
+}
 #endif
