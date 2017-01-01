@@ -19,5 +19,6 @@ function EulerZeroProblem(sProblemNumber, sName)
 
 
 var EulerZeroProblems = [
-    new EulerZeroProblem("001", "Multiples of 3 and 5")
+    new EulerZeroProblem("001", "Multiples of 3 and 5"),
+    new EulerZeroProblem("002", "Even Fibonacci numbers")
 ];
