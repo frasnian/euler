@@ -65,9 +65,14 @@ by definition be non-prime) will be eliminated as we increment our candidate num
 an extra division for each non-prime we've already tested a divisor of, but this is more than 
 offset by skipping the cost of trying to test each candidate divisor for primality. It also has 
 the advantage of simplicity. I certainly didn't think of this method first (no idea where I 
-first saw it) - if you know of a method that is faster, simpler and cleaner, please let me know.
+first saw it) and there are probably methods that are faster, but it doesn't matter as much here
+because the point for this project is zero-runtime (all calculations are actually done before 
+the program is ever run).
 </p>
-<p>For the zero-runtime version, the C++14 relaxations on constexpr functions are used. The code is exactly the same for both the calc-at-execution and zero-runtime implementations - the CAX version just hides constexpr.with a #define directive (hiding a keyword with the preprocessor is extremely bad practice, but this isn't a real program).</p>
+<p>For the zero-runtime version, the C++14 relaxations on constexpr functions are used. 
+The code is exactly the same for both the calc-at-execution and zero-runtime 
+implementations - the CAX version just hides constexpr.with a #define directive 
+(hiding a keyword with the preprocessor is extremely bad practice, but this isn't a real program).</p>
 </div> <!-- ezero_solution -->
 
 </div> <!-- content -->
