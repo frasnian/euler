@@ -33,12 +33,12 @@ var supportedVariants = [
         "clangxx;3.5+;;" + clangNote 
 //        , "intel;??+;",  // Intel compilers as of icc17 choke on this solution
         ]),
-    new supportedVariant("cax", "Calc-at-execution", "c++11", "-zrt", "-cax", "BUILD_ZRT_MAIN", [ 
-        "gcc;4.7.1+;-DEULER_ZERO_CAX;" + gccNote,
-        "gxx;4.7.1+;-DEULER_ZERO_CAX;" + gccNote,
-        "clang;3.4.1+;-DEULER_ZERO_CAX", 
-        "clangxx;3.4.1+;-DEULER_ZERO_CAX", 
-        "intel;13.0.1+;-DEULER_ZERO_CAX", 
+    new supportedVariant("cax", "Calc-at-execution", "c++98", "-zrt", "-cax", "BUILD_ZRT_MAIN", [ 
+        "gcc;4.4.7+;-DEULER_ZERO_CAX -Wno-long-long;" + gccNote,
+        "gxx;4.4.7+;-DEULER_ZERO_CAX -Wno-long-long;" + gccNote,
+        "clang;3.4.1+;-DEULER_ZERO_CAX -Wno-long-long", 
+        "clangxx;3.4.1+;-DEULER_ZERO_CAX -Wno-long-long", 
+        "intel;13.0.1+;-DEULER_ZERO_CAX -Wno-long-long; Intel C++ will compile this without the <code>-Wno-long-long</code> option      (at least as of icc17). Technically, it shouldn't.", 
         "msvc;2003+;/DEULER_ZERO_CAX"
         ])
 ];
@@ -72,7 +72,11 @@ the program is ever run).
 <p>For the zero-runtime version, the C++14 relaxations on constexpr functions are used. 
 The code is exactly the same for both the calc-at-execution and zero-runtime 
 implementations - the CAX version just hides constexpr.with a #define directive 
-(hiding a keyword with the preprocessor is extremely bad practice, but this isn't a real program).</p>
+(hiding a keyword with the preprocessor is extremely bad practice, but this isn't a real program). 
+The CAX version also needs the <code>-Wno-long-long</code> option for some compilers, as <code>'long long'</code>
+is not officially part of ISO C++ 1998 (it's a compiler extension prior to C++11) and we treat 
+all warnings as errors.
+ </p>
 </div> <!-- ezero_solution -->
 
 </div> <!-- content -->
