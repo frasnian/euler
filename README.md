@@ -9,6 +9,6 @@ If you find bugs, have any comments, suggestions about how the documentation can
 
 **Please** do not send me your solution to a problem that does not already have a solution in this repository: I will ignore them (it kind of defeats the entire purpose, right?). On the other hand, if I've already worked out a solution, I'd love to see your implementation - especially if it has really good performance numbers. It's always cool to see a different approach to the same problem.
 
-This repo is copyright (c) 2015,2016,2017 David Starr and distrbuted under the terms of the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt).
+This repo is copyright (c) 2015-2017 David Starr and distrbuted under the terms of the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt).
 
 The Project Euler home page is at https://projecteuler.net/.
