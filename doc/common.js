@@ -33,7 +33,7 @@ var CompilerInformation = [
     new CompilerInfo("clang", "clang", "clang", "--std=", "-S", "-D", "-o", "-lstdc++", stdAlwaysOnOptions),
     new CompilerInfo("clangxx", "clang++", "clang++", "--std=", "-S", "-D", "-o", "", stdAlwaysOnOptions),
     new CompilerInfo("intel", "Intel C++", "icc", "--std=", "-S", "-D", "-o", "-lstdc++", stdAlwaysOnOptions),
-    new CompilerInfo("msvc", "Visual C++", "cl", "", "/Fa", "/D", "/Fe", "", "/EHsc /W4 /WX /O2 /Ox /Ot ")
+    new CompilerInfo("msvc", "Visual C++", "cl", "", "/c /FoNUL", "/D", "/Fa|/Fe", "", "/nologo /EHsc /W4 /WX /Zc:forScope /O2 /Ox /Ot ")
 ];
 
 // these must be global for some versions of firefox
@@ -122,10 +122,11 @@ var commandLine="";
     
     commandLine += compilerAdditionalOptions + " ";
     
+    var optSetOutputName = compilerInfo.optOutputName.split('|'); // ugly kludge for MSVC /Fa vs /Fe 
     if (generateAsm){
         if (!godbolt){
             commandLine += compilerInfo.optAsm + " ";
-            commandLine += compilerInfo.optOutputName + "euler" +problemNumber+  buildVariant.outputSuffix + ".s ";
+            commandLine += optSetOutputName[0] + "euler" +problemNumber+  buildVariant.outputSuffix + ".s ";
         }
     }
     else{
@@ -134,7 +135,8 @@ var commandLine="";
         }
         if (!godbolt){
             commandLine += compilerInfo.ciLinkOptions + " ";
-            commandLine += compilerInfo.optOutputName + "euler" +problemNumber+  buildVariant.outputSuffix + " ";
+            commandLine += (optSetOutputName.length == 2 ?  optSetOutputName[1] : optSetOutputName[0])
+                         + "euler" +problemNumber+  buildVariant.outputSuffix + " ";
         }
     }
     if (!godbolt){
