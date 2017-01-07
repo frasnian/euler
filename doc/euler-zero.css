@@ -22,20 +22,51 @@ pre {
     font-size: 1.2em;
 }
 
+body {
+    height:100%;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:8px;
+    margin-right:0px;
+}
+
+.bld_command_note {
+    text-align:center;
+    align:center;
+    valign:center;
+//    background-image:url(../../doc/icon-note-sm.png);
+    text-align:center;
+    background-repeat:no-repeat;
+    background-position:center;
+    width:22px;
+    height:18px;
+    cursor: default;
+    vertical-align: middle;
+    background-vertical-align: middle;
+}
+
 .column_heading {
     font-family: "Arial New", Helvetica, sans-serif;
+    font-size: .85em;
     font-weight: bold;
     margin-left: 16px;
 }
 
 .column_entry {
     font-family: "Arial New", Helvetica, sans-serif;
+    font-size: .85em;
     padding-right: 16px;
 }
 
 
 .bld_command_table_hdr {
     font-family: "Arial New", Helvetica, sans-serif;
+    font-size: .85em;
+    padding-right: 16px;
+}
+
+.bld_command_table_entry {
+    font-size: .85em;
     padding-right: 16px;
 }
 
@@ -64,7 +95,11 @@ code {
     color:#000050;
 }
 
-td {
+.solution_statement {
+    margin-left: 20px;
+}
+
+.td {
     font-family: "Arial New", Helvetica, sans-serif;
     font-size: .85em;
 }
@@ -112,4 +147,9 @@ a:hover {
 a:active {
     color: #000080;
     //text-decoration: underline;
+}
+
+a:inactive {
+    color: #808080;
+    //text-decoration: none;
 }

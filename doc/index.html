@@ -34,7 +34,7 @@ function indexPageSetup()
             +  '<td style="padding-left:10px;">' +EulerZeroProblems[i].name+ '</td>'
             +  '<td style="padding-left:10px;">' 
                 + '<a href="../src/problem' +EulerZeroProblems[i].problemNumber+ '/readme-' +EulerZeroProblems[i].problemNumber+ '.html">readme</a> | '
-                + '<a href="' +preferences.wikiHome+ "Problem" +EulerZeroProblems[i].problemNumber+ '">wiki page</a> | '
+                + '<a href="../src/problem' +EulerZeroProblems[i].problemNumber+ '/details-' +EulerZeroProblems[i].problemNumber+ '.html">details</a> | '
                 + '<a href="https://projecteuler.net/problem=' +parseInt(EulerZeroProblems[i].problemNumber)+ '">Original problem page at Project Euler web site</a>'
             + '</td>'
             +  '<tr/>'
@@ -42,19 +42,29 @@ function indexPageSetup()
     }
     sOut += '</table>';
     document.getElementById("EZeroSolutionIndex").innerHTML = sOut;
+    
+    var pageFooter  = document.createElement("div", "ezero_footer");
+    pageFooter.innerHTML = pageFooterContent(false);
+    content.appendChild(pageFooter);
+
 }
 --></script>
 
 </head>
 <body onload="indexPageSetup()">
+<div id="content">
 <h1>Euler Zero - Documentation Home</h1><p>
 <p>This is a for-my-own-amusement project to develop zero-runtime solutions in C++ to the problems from <a href="https://projecteuler.net/" target="_blank">Project Euler</a>.  The full Euler Zero project repository, accompanying documentation and a <a href="http://github.com/frasnian/euler-zero/wiki/">project wiki</a> are availble on GitHub, at <a href="http://github.com/frasnian/euler-zero/">http://github.com/frasnian/euler-zero/</a>.
 </p>
-
 <div id="EZeroSolutionIndex"></div>
 
 <div id="contact_info"></div>
 <div id="copyright"></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 </p>
+</div> <!-- content -->
 </body>
 </html>

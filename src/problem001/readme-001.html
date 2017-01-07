@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%;">
 <!--
 <copyright>
 // This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
@@ -17,48 +17,21 @@
 <script type="text/javascript" src="../../doc/common.js"></script>
 <script type="text/javascript" src="../../doc/euler-zero-problems.js"></script>
 <script type="text/javascript" src="../../doc/.euler-zero-prefs.js" ></script>
-<script language="javascript"><!--
-var problemNumber = "001";
-
-// Format: variant-tag, variant-name, required-standard, input-suffix, output-suffix, exe-definitions, supported-compilers[]
-var supportedVariants =  [
-    new supportedVariant("zrt", "Zero-runtime", "c++98", "-zrt", "-zrt", "BUILD_ZRT_MAIN", [ 
-        "gcc;4.5.3+;-ftemplate-depth=1000",
-        "gxx;4.5.3+;-ftemplate-depth=1000",
-        "clang;3.4.1+;-ftemplate-depth=1000", 
-        "clangxx;3.4.1+;-ftemplate-depth=1000"
-//        , "intel;13+;-ftemplate-depth=1000", 
-        ]),
-    new supportedVariant("cax", "Calc-at-execution", "c++98", "-cax", "-cax", "", [ 
-        "gcc;4.4.7+;",
-        "gxx;4.4+;", 
-        "clang;3.4.1+;", 
-        "clangxx;3.4.1+;", 
-        "intel;13.0.1+;", 
-        "msvc;2003+;"
-        ])
-];
---></script>
+<script type="text/javascript" src="ezero-vars-001.js"></script>
 </head>
-<body onload="standardPageElements()">
-<div id="content">
-<div id="ezero_intro"></div>
+<body onload="standardReadmePageElements()">
 
-<div id="ezero_problem">
-<div class="problem_statement">
+<div id="ezero_problem">       
     If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.<br/>
     Find the sum of all the multiples of 3 or 5 below 1000.<br/>
-</div>
 </div> <!-- ezero_problem -->
 
-<p />
-
 <div id="ezero_solution">
-For a problem this simple, the calculation-at-execution version is pretty self-explanatory - see the code. Just count up to the limit (1000) and if the number is evenly disible by 3 or 5, add the number to our running sum.<br/>
-<br/>The zero-runtime version is also fairly self-explanatory.  It uses template meta-programming to count backwards from the upper bound to our terminating (explicit) specialization, at which point further recursion stops and we&apos;re done. It would have been just as easy to count <i>up</i> to the limit, but it makes no difference.
-<br/>Note that although the zero-runtime version only needs C++98, some compilers (such as MSVC) cap the depth of template recursions and have no means of changing this limit. Others provide a command-line option to increase the template recursion limit, which is required for and used by this solution.  The Intel C++ compiler supports a <code>-ftemplate-depth</code> option, but it fails to compile this solution with an internal error if <code>limit</code> is a value > 511 (icc16) or 629 (icc17).
+    For a problem this simple, the calculation-at-execution version is pretty self-explanatory - see the code. Just count up to the limit (actually, <code>limit-1</code>) and if the current index is evenly divisible by 3 or 5, add the number to our running sum.<br/>
+    <br/>The zero-runtime version is also fairly self-explanatory.  It uses template meta-programming to count backwards from the upper bound to our terminating (explicit) specialization, at which point further recursion stops and we&apos;re done. It would have been just as easy to count <i>up</i> to the limit, but it makes no difference.
+    <p>Note that although the zero-runtime version only needs C++98, some compilers (such as MSVC) cap the depth of template recursions and have no means of changing this limit. Others provide a command-line option to increase the template recursion limit, which is required for and used by this solution.  The Intel C++ compiler supports a <code>-ftemplate-depth</code> option, but the environment I can test this with dies with an internal compiler error if <code>limit</code> is a value > 511 (icc16) or 629 (icc17). Let me know if you have any suggestions about making <code>icc</code> work with the template depth required here.
+    </p>
 </div> <!-- ezero_solution -->
 
-</div> <!-- content -->
 </body>
 </html>

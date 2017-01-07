@@ -37,7 +37,6 @@ var CompilerInformation = [
 ];
 
 // these must be global for some versions of firefox
-var problemHeader;
 var buildCommands;
 var cmdLineProxy;
 
@@ -61,7 +60,6 @@ function supportedVariant(sVariantTag, sSolutionVariant, sRequiredStandard, sInp
     this.supportedCompilers = aSupportedCompilers;
   return this;
 }
-
 
 function EulerZeroDefaults() {
   this.defaultCompiler = "";                                      // no preset default compiler  
@@ -88,16 +86,16 @@ function showRequiredStandards(oRequiredStandards){
     return sOut;
 }
 
-function pageFooterContent(bIsSolutionPage){
-    var s = "";
-    
-    if (bIsSolutionPage){
-        s += '<p align="center"><br/><a href="../../doc/index.html">Documentation Home</a></p>';
-    }
-    s += '<p align="center" class="footer_notices"><a href="https://github.com/frasnian/euler-zero/wiki/License" target="_blank">Copyright &amp License Info</a> <b>&nbsp; | &nbsp;</b> <a href="https://github.com/frasnian/euler-zero/wiki/Contact-Info" target="_blank">Contact</a></p>';
-  
+function pageAttributionContent(){
+    var s = 
+    '<p align="center" class="footer_notices"><a href="https://github.com/frasnian/euler-zero/wiki/License" target="_blank">Copyright &amp License Info</a> <b>&nbsp; | &nbsp;</b> <a href="https://github.com/frasnian/euler-zero/wiki/Contact-Info" target="_blank">Contact</a></p>'; 
     return s;
 }
+
+function pageHomeLinkContent(){
+    return  '<br/><a href="../../doc/index.html">Documentation Home</a>';
+}
+
 
 function lookupCompilerInfoByTag(sCompilerTag){
     for (var i = 0; i < CompilerInformation.length; i++){
@@ -110,8 +108,6 @@ function lookupCompilerInfoByTag(sCompilerTag){
 }
 
 function generateBuildCommandLine(buildVariant, compilerInfo, compilerAdditionalOptions, generateAsm, godbolt){
-var commandLine="";
-
   var commandLine = godbolt ? "" : (compilerInfo.command + " ");
 
     commandLine += compilerInfo.ciOptionAlways;
@@ -172,7 +168,7 @@ function regenerateBuildCommands(setDiv){
     var godbolt = document.getElementById("opt_godbolt").checked;
     var compilerNotes = new Array;
 
-    sOut+= '<tr><td class="bld_command_table_hdr"><b>Compiler</b></td><td class="bld_command_table_hdr"><b>Version</b></td><td class="bld_command_table_hdr"><b>Build Command Line<b></td><td></td><td></td></tr>';
+    sOut+= '<tr><td class="bld_command_table_hdr"><b>Compiler</b></td><td class="bld_command_table_hdr"><b>Version</b></td><td class="bld_command_table_hdr"><b>Build Command Line<b></td><td style="width:15px;"></td><td></td></tr>';
     for (var i = 0; i < supportedVariants.length; ++i){
         if (buildVariant != i){
             continue;
@@ -189,18 +185,18 @@ function regenerateBuildCommands(setDiv){
                 
                 var compilerInfo = lookupCompilerInfoByTag(compilerTag);
                                
-                sOut += '<tr><td nowrap>' +compilerInfo.friendlyName+ '</td>' 
-                 +  '<td>(' +compilerVersion+  ")" +'</td>'
-                 +  '<td id="' +compilerInfo.ident+ i  + '"><code>' 
+                sOut += '<tr><td class="bld_command_table_entry" nowrap>' +compilerInfo.friendlyName+ '</td>' 
+                 +  '<td class="bld_command_table_entry">(' +compilerVersion+  ")" +'</td>'
+                 +  '<td  class="bld_command_table_entry" id="' +compilerInfo.ident+ i  + '"><code>' 
                  +      generateBuildCommandLine(v, compilerInfo, compilerAdditionalOptions, outputAsm, godbolt)+ '</code>'
                  + '</td>'
-                 + '<td><button id = "btn_' +compilerInfo.ident + i + '\" style="border:0;height:19px;" title="Copy command line to clipboard" '
+                 + '<td class="bld_command_table_entry" width="15"><button id = "btn_' +compilerInfo.ident + i + '\" style="border:0px;margin:0px;padding:0px;height:19px;width:15px;" title="Copy command line to clipboard" '
                     + 'onclick="copyToClipboard(\'' +compilerInfo.ident + i  + '\')">'
                     + '<img src="../../doc/copy2clipboard-sm2.png"></button'
                 +'</td>'
                 ;
                 if (compilerAdditionalNote){
-                    sOut += '<td text-align="center"  align="center" valign="center" style="background-image:url(../../doc/icon-note-sm.png);background-repeat:no-repeat;background-position:center;width:22px;height:18px;cursor: default;vertical-align: middle;background-vertical-align: middle;"'
+                    sOut += '<td  xclass="bld_command_table_entry" text-align="center"  align="center" valign="center" style="background-image:url(../../doc/icon-note-sm.png);text-align:center;background-repeat:no-repeat;background-position:center;width:22px;height:18px;cursor: default;vertical-align: middle;background-vertical-align: middle;"'
                     ;
                     var newNote = true;
                     for (var existingNote = 0; existingNote < compilerNotes.length; ++existingNote){
@@ -250,7 +246,6 @@ function writeBuildCommandForm(){
         +  '<form onchange="regenerateBuildCommands(true)">'
         + '<p>'
         +  '<table style="margin-top:-.85em;margin-left:20px;">'
-        +  '  <!-- <tr><td colspan="4"><span class="table_heading"><b>Build:</b></span></td></tr> -->'
         +  '  <tr>'
         +  '    <td class="column_heading">Variant</td>'
         +  '    <td class="column_heading">Compiler</td>'
@@ -303,12 +298,12 @@ function writeBuildCommandForm(){
     return sOut;
 }
 
-function addPageHeader(oElement)
+function pageBodyTitleContent(pageType)
 {
     for (var i = 0; i < EulerZeroProblems.length; ++i){
         if (problemNumber == EulerZeroProblems[i].problemNumber){
             var sOut = "<h1>Euler Zero - Problem " +parseInt(problemNumber)
-                     + " : " + EulerZeroProblems[i].name
+                     + " : " + EulerZeroProblems[i].name //+ " (" +pageType+ ")"
                      + "</h1>"
                 ;
             return sOut; // break;
@@ -316,16 +311,108 @@ function addPageHeader(oElement)
     }  
 }
 
-function standardPageElements() {
+function pageReadmeTopNavContent()
+{
+    var idx = -1;
+    for (var i = 0; i < EulerZeroProblems.length; ++i){
+        if (problemNumber == EulerZeroProblems[i].problemNumber){
+            idx = i;
+            break;
+        }
+    }
+    if (idx == -1){
+        return "";
+    }
+
+        //var myIdx = findProblem
+    var hasPrev = idx > 0;
+    var hasNext = idx < EulerZeroProblems.length - 1;
+    var s = "";
+    
+    if(1){
+        s += "&nbsp;|&nbsp;";
+
+        s += '<a href="details-' +problemNumber+ '.html" title="Detail Page">Detail</a>';
+        s += "&nbsp;|&nbsp;";
+        
+        s += '<a href="source-' +problemNumber+ '.html" title="View solution source code">Source</a>';
+        s += "&nbsp;|&nbsp;";
+        if (hasPrev){
+            s += '<a href="../problem' +(EulerZeroProblems[idx-1].problemNumber)+ '/readme-' +(EulerZeroProblems[idx-1].problemNumber)+ '.html" title="Previous Solution">Prev</a>';
+        }
+        else{
+            s += '<font color="#A0A0A0" title="No previous solution">Prev</font>';
+        }
+        s += "&nbsp;|&nbsp;";
+
+        if (hasNext){
+            s += '<a href="../problem' +(EulerZeroProblems[idx+1].problemNumber)+ '/readme-' +(EulerZeroProblems[idx+1].problemNumber)+ '.html" title="Next Solution">Next</a>';
+        }
+        else{
+            s += '<font color="#A0A0A0" title="No next solution">Next</font>';
+        }
+        s += "&nbsp;|&nbsp;";
+    }
+    else{ // TODO: real buttons; real images; add actual links
+        s += "Detail | ";
+        s += '<img src="../../doc/solutioncode.png" title="Solution source code"></img>';
+       
+        if (hasPrev){
+            s += '<img src="../../doc/arr-prev-active.png" title="Previous Solution"></img>';
+        }
+        else{
+            s += '<img src="../../doc/arr-prev-inactive.png" title="No previous solution"></img>';
+        }
+        if (hasNext){
+            s += '<img src="../../doc/arr-next-active.png" title="Next Solution"></img>';
+        }
+        else{
+            s += '<img src="../../doc/arr-next-inactive.png" title="No next solution"></img>';
+        }
+            
+    }
+    return s;
+}
+
+
+
+// standard elements for README-nnn.html pages
+function standardReadmePageElements() {
+    var oProblem = document.getElementById("ezero_problem");
+    var sCurrent = oProblem.innerHTML;
+    var sProblemFixUp = '<b>The problem:</b><br/><div class="problem_statement">' +sCurrent+ '</div><p></p>';
+    
+    var oSolution = document.getElementById("ezero_solution");
+    sCurrent = oSolution.innerHTML;
+    var sSolutionFixUp = '<b>The solution:</b></br><div class="solution_statement">' +sCurrent+ '</div><p></p>';
+    
+    // this is our standard page template:
+    var body = document.body.innerHTML = ""   
+        + '<table width="100%" style="height:100%;" border="0" cellpadding="0" cellspacing="0">'
+        + '<tr style="height:1%"><td id="doc_pageheader" align="left">'
+        + '    <table style="margin-left:0px;" cellpadding="0" cellspacing="0">'
+        + '        <tr><td nowrap align="left" id="doc_pageBodyTitle"></td>'
+        + '            <td nowrap width="99%" align="right" style="padding-right:6px;"><div id="readme_topnav"></div></td>'
+        + '        </tr>'
+        + '    </table>'
+        + '</td></tr>'
+        + '<tr style="height:auto; vertical-align:top;"><td id="doc_pagebody">'
+        + '        <div id="content">'
+        + '            <div id="ezero_problem_actual"></div>'
+        + '            <div id="ezero_solution_actual"></div>'
+        + '        </div> <!-- content -->'
+        + '</td></tr>'
+        + '<tr style="height:1%"><td align="center"><div id="ezero_doc_index"></div></td></tr>'
+        + '<tr style="height:1%"><td align="center" style="padding-bottom:0px;"><div id="attribution"></div></td></tr>'
+        + '</table>'
+        ;
+    
     setTitle(problemNumber);
 
     var content = document.getElementById("content");
-    var intro = document.getElementById("ezero_intro");
     
-    problemHeader = document.createElement("div", 'id="ezero_problemheader"');
-    var s = addPageHeader(problemHeader);
-    problemHeader.innerHTML = s;
-    content.insertBefore(problemHeader, intro);
+    document.getElementById("doc_pageBodyTitle").innerHTML = pageBodyTitleContent("readme");
+    document.getElementById("readme_topnav").innerHTML = pageReadmeTopNavContent();
     
     var requiredStandards = document.createElement("div", "required_standards");
     requiredStandards.innerHTML = showRequiredStandards(supportedVariants);
@@ -339,22 +426,47 @@ function standardPageElements() {
     content.appendChild(cmdLineProxy);
 
     buildCommands = document.createElement("div", "build_commands");
-    s = regenerateBuildCommands(false);
-    buildCommands.innerHTML = s;
+    buildCommands.innerHTML = regenerateBuildCommands(false);
     content.appendChild(buildCommands);
     
+    document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();
+    document.getElementById("attribution").innerHTML = pageAttributionContent();
+    
+    // fixups for Problem & Solution sections:   
+    document.getElementById("ezero_problem_actual").innerHTML = sProblemFixUp;
+    document.getElementById("ezero_solution_actual").innerHTML = sSolutionFixUp;   
+}
+
+function standardDetailPageElements() {
+    setTitle(problemNumber);
+
+    var problemHeader; // ----------TODO: delete!!!!!!!!!!!!!!!!!
+
+    var content = document.getElementById("content");
+    var intro = document.getElementById("ezero_intro");
+    
+    problemHeader = document.createElement("div", 'id="ezero_problemheader"');
+    var s = pageBodyTitleContent("details");
+    problemHeader.innerHTML = s;
+    content.insertBefore(problemHeader, intro);
+/*    
+    var requiredStandards = document.createElement("div", "required_standards");
+    requiredStandards.innerHTML = showRequiredStandards(supportedVariants);
+    content.appendChild(requiredStandards);
+     
     var pageFooter  = document.createElement("div", "ezero_footer");
     pageFooter.innerHTML = pageFooterContent(true);
     content.appendChild(pageFooter);
+*/    
     
     // fixups for Problem & Solution sections:
     var oProblem = document.getElementById("ezero_problem");
     var sCurrent = oProblem.innerHTML;
-    var sFixedUp = '<b>The problem:</b><br/>' + sCurrent;
-    oProblem.innerHTML = sFixedUp;
-    
+    var sProblemFixup = '<b>The problem:</b><br/>' + sCurrent;
+
     var oSolution = document.getElementById("ezero_solution");
     sCurrent = oSolution.innerHTML;
-    sFixedUp = '<b>The solution:</b></br>' + sCurrent;
+    var sSolutionFixup = '<b>The solution:</b></br>' + sCurrent;
+    oProblem.innerHTML = sFixedUp;
     oSolution.innerHTML = sFixedUp;  
 }
