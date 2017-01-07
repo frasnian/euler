@@ -332,13 +332,13 @@ function pageReadmeTopNavContent()
     if(1){
         s += "&nbsp;|&nbsp;";
 
-        s += '<a href="details-' +problemNumber+ '.html" title="Detail Page">Detail</a>';
+        s += '<a href="ezp-detail-' +problemNumber+ '.html" title="Detail Page">Detail</a>';
         s += "&nbsp;|&nbsp;";
         
-        s += '<a href="source-' +problemNumber+ '.html" title="View solution source code">Source</a>';
+        s += '<a href="ezp-source-' +problemNumber+ '.html" title="View solution source code">Source</a>';
         s += "&nbsp;|&nbsp;";
         if (hasPrev){
-            s += '<a href="../problem' +(EulerZeroProblems[idx-1].problemNumber)+ '/readme-' +(EulerZeroProblems[idx-1].problemNumber)+ '.html" title="Previous Solution">Prev</a>';
+            s += '<a href="../problem' +(EulerZeroProblems[idx-1].problemNumber)+ '/ezp-readme-' +(EulerZeroProblems[idx-1].problemNumber)+ '.html" title="Previous Solution">Prev</a>';
         }
         else{
             s += '<font color="#A0A0A0" title="No previous solution">Prev</font>';
@@ -346,7 +346,7 @@ function pageReadmeTopNavContent()
         s += "&nbsp;|&nbsp;";
 
         if (hasNext){
-            s += '<a href="../problem' +(EulerZeroProblems[idx+1].problemNumber)+ '/readme-' +(EulerZeroProblems[idx+1].problemNumber)+ '.html" title="Next Solution">Next</a>';
+            s += '<a href="../problem' +(EulerZeroProblems[idx+1].problemNumber)+ '/ezp-readme-' +(EulerZeroProblems[idx+1].problemNumber)+ '.html" title="Next Solution">Next</a>';
         }
         else{
             s += '<font color="#A0A0A0" title="No next solution">Next</font>';
