@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%;">
 <!--
 <copyright>
 // This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
-// Copyright (c) 2015,2016 David Starr
+// Copyright (c) 2015-2017 David Starr
 //
 // Distributed under the Boost Software License, Version 1.0. 
 // (See accompanying file LICENSE_1_0.txt or copy at 
@@ -15,32 +15,25 @@
 <meta charset="UTF-8"> 
 <link rel="stylesheet" type="text/css" href="../../doc/euler-zero.css">
 <script type="text/javascript" src="../../doc/common.js"></script>
+<script type="text/javascript" src="../../doc/detailpage.js"></script>
 <script type="text/javascript" src="../../doc/euler-zero-problems.js"></script>
 <script type="text/javascript" src="../../doc/.euler-zero-prefs.js" ></script>
-<script language="javascript"><!--
-var problemNumber = "001";
-
---></script>
+<script type="text/javascript" src="ezp-docvar-001.js"></script>
 </head>
 <body onload="standardDetailPageElements()">
-<div id="content">
-<div id="ezero_intro"></div>
 
 <div id="ezero_problem">
-<div class="problem_statement">
     If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.<br/>
     Find the sum of all the multiples of 3 or 5 below 1000.<br/>
-</div>
 </div> <!-- ezero_problem -->
 
-<p />
+<div id="ezero_detail">
+    There really isn't much to say about this solution - for numbers this small I just used a brute force approach (for idx = 3 to 999, if idx is evenly divisible by 3 or 5, add idx to running sum). We start at 3 because anything less is obviously not divisible by three. 
+    <p>The zero-runtime version does exactly the same thing, just using C++ template metaprogramming: we recursively instantiate a template that does the check for divisibility, and terminate the recursion with an explicit specialization that doesn't recurse.</p>
+    <p>About the only thing even mildly interesting about it is that you may run into template recursion limits for your compiler (see the <a href="ezp-readme-001.html">readme file</a> for compiler details).</p>
+    
+    <p>Later problems get more interesting. Really.</p>
+</div> <!-- ezero_detail -->
 
-<div id="ezero_solution">
-For a problem this simple, the calculation-at-execution version is pretty self-explanatory - see the code. Just count up to the limit (1000) and if the number is evenly disible by 3 or 5, add the number to our running sum.<br/>
-<br/>The zero-runtime version is also fairly self-explanatory.  It uses template meta-programming to count backwards from the upper bound to our terminating (explicit) specialization, at which point further recursion stops and we&apos;re done. It would have been just as easy to count <i>up</i> to the limit, but it makes no difference.
-<br/>Note that although the zero-runtime version only needs C++98, some compilers (such as MSVC) cap the depth of template recursions and have no means of changing this limit. Others provide a command-line option to increase the template recursion limit, which is required for and used by this solution.  The Intel C++ compiler supports a <code>-ftemplate-depth</code> option, but it fails to compile this solution with an internal error if <code>limit</code> is a value > 511 (icc16) or 629 (icc17).
-</div> <!-- ezero_solution -->
-
-</div> <!-- content -->
 </body>
 </html>
