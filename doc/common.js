@@ -192,11 +192,11 @@ function regenerateBuildCommands(setDiv){
                  + '</td>'
                  + '<td class="bld_command_table_entry" width="15"><button id = "btn_' +compilerInfo.ident + i + '\" style="border:0px;margin:0px;padding:0px;height:19px;width:15px;" title="Copy command line to clipboard" '
                     + 'onclick="copyToClipboard(\'' +compilerInfo.ident + i  + '\')">'
-                    + '<img src="../../doc/copy2clipboard-sm2.png"></button'
+                    + '<img src="../../doc/img/copy2clipboard-sm2.png"></button'
                 +'</td>'
                 ;
                 if (compilerAdditionalNote){
-                    sOut += '<td  xclass="bld_command_table_entry" text-align="center"  align="center" valign="center" style="background-image:url(../../doc/icon-note-sm.png);text-align:center;background-repeat:no-repeat;background-position:center;width:22px;height:18px;cursor: default;vertical-align: middle;background-vertical-align: middle;"'
+                    sOut += '<td  xclass="bld_command_table_entry" text-align="center"  align="center" valign="center" style="background-image:url(../../doc/img/icon-note-sm.png);text-align:center;background-repeat:no-repeat;background-position:center;width:22px;height:18px;cursor: default;vertical-align: middle;background-vertical-align: middle;"'
                     ;
                     var newNote = true;
                     for (var existingNote = 0; existingNote < compilerNotes.length; ++existingNote){
@@ -355,19 +355,19 @@ function pageReadmeTopNavContent()
     }
     else{ // TODO: real buttons; real images; add actual links
         s += "Detail | ";
-        s += '<img src="../../doc/solutioncode.png" title="Solution source code"></img>';
+        s += '<img src="../../doc/img/solutioncode.png" title="Solution source code"></img>';
        
         if (hasPrev){
-            s += '<img src="../../doc/arr-prev-active.png" title="Previous Solution"></img>';
+            s += '<img src="../../doc/img/arr-prev-active.png" title="Previous Solution"></img>';
         }
         else{
-            s += '<img src="../../doc/arr-prev-inactive.png" title="No previous solution"></img>';
+            s += '<img src="../../doc/img/arr-prev-inactive.png" title="No previous solution"></img>';
         }
         if (hasNext){
-            s += '<img src="../../doc/arr-next-active.png" title="Next Solution"></img>';
+            s += '<img src="../../doc/img/arr-next-active.png" title="Next Solution"></img>';
         }
         else{
-            s += '<img src="../../doc/arr-next-inactive.png" title="No next solution"></img>';
+            s += '<img src="../../doc/img/arr-next-inactive.png" title="No next solution"></img>';
         }
             
     }
