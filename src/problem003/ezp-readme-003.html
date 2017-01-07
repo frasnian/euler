@@ -15,6 +15,7 @@
 <meta charset="UTF-8"> 
 <link rel="stylesheet" type="text/css" href="../../doc/euler-zero.css">
 <script type="text/javascript" src="../../doc/common.js"></script>
+<script type="text/javascript" src="../../doc/readmepage.js"></script>
 <script type="text/javascript" src="../../doc/euler-zero-problems.js"></script>
 <script type="text/javascript" src="../../doc/.euler-zero-prefs.js" ></script>
 <script type="text/javascript" src="ezp-docvar-003.js"></script>
@@ -41,8 +42,9 @@ the program is ever run).
 </p>
 <p>For the zero-runtime version, the C++14 relaxations on constexpr functions are used. 
 The code is exactly the same for both the calc-at-execution and zero-runtime 
-implementations - the CAX version just hides constexpr.with a #define directive 
-(hiding a keyword with the preprocessor is extremely bad practice, but this isn't a real program). 
+implementations - the CAX version just hides <code>constexpr</code> with a <code>#define</code> directive 
+(hiding a keyword with the preprocessor is <i>extremely</i> bad practice, but this isn&apos;t really 
+a real program). 
 The CAX version also needs the <code>-Wno-long-long</code> option for some compilers, as <code>'long long'</code>
 is not officially part of ISO C++ 1998 (it's a compiler extension prior to C++11) and we treat 
 all warnings as errors.

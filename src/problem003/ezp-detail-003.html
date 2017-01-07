@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+<copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2015-2017 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+</copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<link rel="stylesheet" type="text/css" href="../../doc/euler-zero.css">
+<script type="text/javascript" src="../../doc/common.js"></script>
+<script type="text/javascript" src="../../doc/detailpage.js"></script>
+<script type="text/javascript" src="../../doc/euler-zero-problems.js"></script>
+<script type="text/javascript" src="../../doc/.euler-zero-prefs.js" ></script>
+<script type="text/javascript" src="ezp-docvar-003.js"></script>
+</head>
+<body onload="standardDetailPageElements()">
+
+<div id="ezero_problem">
+    <br/>The prime factors of 13195 are 5, 7, 13 and 29.
+    <p>What is the largest prime factor of the number 600851475143 ?</p>
+</div> <!-- ezero_problem -->
+
+<div id="ezero_detail">
+    This is similar to the case with <a href="../problem002/ezp-detail-002.html">Problem 2</a>: very straightforward to 
+    create a zero-runtime solution by expressing it using C++14 <code>constexpr</code> functions.
+    <p>The code for the calculation-at-execution and zero-runtime solutions is <i>exactly</i> the same, the only difference is in the compiler options that determine when things get either evaluated (ZRT) or compiled (CAX) and hide <code>constexpr</code> from
+    when compiling the calculation-at-execution version.
+    </p>
+    <p>The code is pretty self-explanatory for this one, no additional commentary should be necessary beyond the solution summary
+    in the <a href="ezp-readme-003.html">readme</a> file.</p>
+    <p>Later problems get more interesting. They really do. Really really?</p>
+    
+
+
+</body>
+</html>

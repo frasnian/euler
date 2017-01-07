@@ -29,13 +29,14 @@ function indexPageSetup()
          + '</tr>'
          ;
     for (var i = 0; i < EulerZeroProblems.length; ++i){
+        var sProblem = EulerZeroProblems[i].problemNumber;
         sOut+= '<tr>'
-            +  '<td align="right">' +parseInt(EulerZeroProblems[i].problemNumber) + '</td>'
+            +  '<td align="right">' +parseInt(sProblem) + '</td>'
             +  '<td style="padding-left:10px;">' +EulerZeroProblems[i].name+ '</td>'
             +  '<td style="padding-left:10px;">' 
-                + '<a href="../src/problem' +EulerZeroProblems[i].problemNumber+ '/readme-' +EulerZeroProblems[i].problemNumber+ '.html">readme</a> | '
-                + '<a href="../src/problem' +EulerZeroProblems[i].problemNumber+ '/details-' +EulerZeroProblems[i].problemNumber+ '.html">details</a> | '
-                + '<a href="https://projecteuler.net/problem=' +parseInt(EulerZeroProblems[i].problemNumber)+ '">Original problem page at Project Euler web site</a>'
+                + '<a href="../src/problem' +sProblem+ '/ezp-readme-' +sProblem+ '.html">readme</a> | '
+                + '<a href="../src/problem' +sProblem+ '/ezp-detail-' +sProblem+ '.html">details</a> | '
+                + '<a href="https://projecteuler.net/problem=' +parseInt(sProblem)+ '">Original problem page at Project Euler web site</a>'
             + '</td>'
             +  '<tr/>'
         ;
