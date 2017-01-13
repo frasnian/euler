@@ -46,7 +46,7 @@ function standardDetailPageElements() {
 
     var content = document.getElementById("content");
   
-    document.getElementById("doc_pageBodyTitle").innerHTML = pageBodyTitleContent("readme");
+    document.getElementById("doc_pageBodyTitle").innerHTML = pageBodyTitleContent("detail");
     document.getElementById("readme_topnav").innerHTML = pageTopNavContent("detail");
     
     document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();

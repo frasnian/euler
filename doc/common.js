@@ -61,7 +61,7 @@ function pageBodyTitleContent(pageType)
     for (var i = 0; i < EulerZeroProblems.length; ++i){
         if (problemNumber == EulerZeroProblems[i].problemNumber){
             var sOut = "<h1>Euler Zero - Problem " +parseInt(problemNumber)
-                     + " : " + EulerZeroProblems[i].name //+ " (" +pageType+ ")"
+                     + " : " + EulerZeroProblems[i].name + '<span class="page_type_indicator">( ' +pageType+ " )</span>"
                      + "</h1>"
                 ;
             return sOut; // break;
@@ -83,8 +83,8 @@ function pageTopNavContent(pageType)
     }
 
         //var myIdx = findProblem
-    var hasPrev = idx > 0;
-    var hasNext = idx < EulerZeroProblems.length - 1;
+    var oPrev = (idx > 0 ? EulerZeroProblems[idx - 1] : null);
+    var oNext = (idx < EulerZeroProblems.length - 1 ? EulerZeroProblems[idx + 1] : null);
     var s = "";
     
     var switchTo = "";
@@ -110,16 +110,24 @@ function pageTopNavContent(pageType)
 // TODO: add source link back in + wrapper page. see full todo list
 //        s += '<a href="ezp-source-' +problemNumber+ '.html" title="View solution source code">Source</a>';
 //        s += "&nbsp;|&nbsp;";
-        if (hasPrev){
-            s += '<a href="../problem' +(EulerZeroProblems[idx-1].problemNumber)+ '/ezp-' +pageType+'-' +(EulerZeroProblems[idx-1].problemNumber)+ '.html" title="Previous Solution">Prev</a>';
+        if (oPrev){
+            s += '<a href="../problem' +oPrev.problemNumber+ '/ezp-' +pageType+'-' +oPrev.problemNumber+ '.html"'
+            + ' title="Previous Solution\n(Problem ' +oPrev.problemNumber
+            + ' - ' + oPrev.name
+            + ')">Prev</a>'
+            ;
         }
         else{
             s += '<font color="#A0A0A0" title="No previous solution">Prev</font>';
         }
         s += "&nbsp;|&nbsp;";
 
-        if (hasNext){
-            s += '<a href="../problem' +(EulerZeroProblems[idx+1].problemNumber)+ '/ezp-' +pageType+ '-' +(EulerZeroProblems[idx+1].problemNumber)+ '.html" title="Next Solution">Next</a>';
+        if (oNext){
+            s += '<a href="../problem' +oNext.problemNumber+ '/ezp-' +pageType+'-' +oNext.problemNumber+ '.html"'
+            + ' title="Next Solution\n(Problem ' +oNext.problemNumber
+            + ' - ' + oNext.name
+            + ')">Next</a>'
+            ;
         }
         else{
             s += '<font color="#A0A0A0" title="No next solution">Next</font>';
@@ -129,13 +137,13 @@ function pageTopNavContent(pageType)
         s += "Detail | ";
         s += '<img src="../../doc/img/solutioncode.png" title="Solution source code"></img>';
        
-        if (hasPrev){
+        if (oPrev){
             s += '<img src="../../doc/img/arr-prev-active.png" title="Previous Solution"></img>';
         }
         else{
             s += '<img src="../../doc/img/arr-prev-inactive.png" title="No previous solution"></img>';
         }
-        if (hasNext){
+        if (oNext){
             s += '<img src="../../doc/img/arr-next-active.png" title="Next Solution"></img>';
         }
         else{

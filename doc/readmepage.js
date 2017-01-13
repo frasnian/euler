@@ -184,9 +184,9 @@ function regenerateBuildCommands(setDiv){
         }
     }
     if (compilerNotes.length){
-        sOut += '<tr><td align="right"><b>Notes:</b></td><td colspan="4"></td></tr>';
+        sOut += '<tr><td align="right" class="column_heading"><b>Notes:</b></td><td colspan="4"></td></tr>';
         for (var note = 0; note < compilerNotes.length; ++note){
-            sOut += '<tr><td align="right">' +(note+1)+ ') </td><td colspan="2"> ' +compilerNotes[note]+ '</td><td></td><td></td></tr>';
+            sOut += '<tr><td align="right">' +(note+1)+ ') </td><td colspan="2" class="column_entry"> ' +compilerNotes[note]+ '</td><td></td><td></td></tr>';
         }
     }
     sOut += '</table>';  
