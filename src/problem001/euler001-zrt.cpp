@@ -35,6 +35,6 @@ long lSum = PrevMultiple<limit-1>::sum;
 #include <iostream>
 int main()
 {
-    std::cout << sum << std::endl;
+    std::cout << lSum << std::endl;
 }
 #endif

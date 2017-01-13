@@ -1,9 +1,9 @@
 // euler003-zrt.cpp:
 // Euler Zero, Problem 3 - Zero-runtime and calculation-at-execution versions
 // The code for both implementations is the same - compiler options
-// determine which version should be built - the CAX implementation just
-// hides the constexpr keyword (it is *extremely* bad practice to hide a 
-// keyword, but this isn't a real program).
+// determine which version should be built - the only difference is
+// that CONSTEXPR is defined as the keyword for ZRT implentations and
+// an empty definition for CAX.
 //
 // <copyright>
 // This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
@@ -15,14 +15,10 @@
 // </copyright>
 //
 
-#ifdef EULER_ZERO_CAX
-#define constexpr           // *never* do this in real life!
-#endif
-
-constexpr unsigned long long LargestPrimeFactor(unsigned long long n)
+CONSTEXPR unsigned long long LargestPrimeFactor(unsigned long long n)
 {
-    unsigned long long lpf     = 0;
-    unsigned long divisor = 2;
+    unsigned long long lpf = 0;
+    unsigned long divisor  = 2;
 
     while (n > 1){
         while(0 == (n % divisor)){
@@ -47,11 +43,6 @@ constexpr unsigned long long LargestPrimeFactor(unsigned long long n)
 unsigned long long lpf = LargestPrimeFactor(600851475143);
 
 #ifdef BUILD_ZRT_MAIN
-
-#ifdef EULER_ZERO_CAX
-#undef constexpr        // so MS headers don't choke
-#endif
-
 #include <iostream>
 int main()
 {

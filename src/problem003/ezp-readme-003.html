@@ -42,9 +42,7 @@ the program is ever run).
 </p>
 <p>For the zero-runtime version, the C++14 relaxations on constexpr functions are used. 
 The code is exactly the same for both the calc-at-execution and zero-runtime 
-implementations - the CAX version just hides <code>constexpr</code> with a <code>#define</code> directive 
-(hiding a keyword with the preprocessor is <i>extremely</i> bad practice, but this isn&apos;t really 
-a real program). 
+implementations - the only difference is in the compiler options that determine how the <code>CONSTEXPR</code> macro is expanded: as the <code>constexpr</code> keyword (ZRT) or an empty definition (CAX). 
 The CAX version also needs the <code>-Wno-long-long</code> option for some compilers, as <code>'long long'</code>
 is not officially part of ISO C++ 1998 (it's a compiler extension prior to C++11) and we treat 
 all warnings as errors.

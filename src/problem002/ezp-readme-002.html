@@ -33,8 +33,8 @@ This solution is completely straightforward - just calculate each Fibonacci numb
 and, if even, add to our running sum. The problem essentially describes the solution. 
 For the zero-runtime version, the C++14 relaxations on <code>constexpr</code> functions 
 are used. The code is exactly the same for both the calc-at-execution and zero-runtime 
-implementations - the CAX version just hides <code>constexpr</code>.with a <code>#define</code> 
-directive (hiding a keyword with the preprocessor is <u>extremely</u> bad practice, but this isn&apos;t a real program).
+implementations - the build command line for the CAX version just has an empty definition 
+for CONSTEXPR, while it expands to the <code>constexpr</code> keyword in the ZRT version.
 </div> <!-- ezero_solution -->
 
 </body>

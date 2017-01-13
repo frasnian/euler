@@ -30,12 +30,11 @@
 <div id="ezero_detail">
     This is similar to the case with <a href="../problem002/ezp-detail-002.html">Problem 2</a>: very straightforward to 
     create a zero-runtime solution by expressing it using C++14 <code>constexpr</code> functions.
-    <p>The code for the calculation-at-execution and zero-runtime solutions is <i>exactly</i> the same, the only difference is in the compiler options that determine when things get either evaluated (ZRT) or compiled (CAX) and hide <code>constexpr</code> from
-    when compiling the calculation-at-execution version.
+    <p>The code for the calculation-at-execution and zero-runtime solutions is <i>exactly</i> the same, the only difference is in the compiler options that determine how the <code>CONSTEXPR</code> macro is expanded: as the <code>constexpr</code> keyword (ZRT) or an empty definition (CAX).
     </p>
     <p>The code is pretty self-explanatory for this one, no additional commentary should be necessary beyond the solution summary
     in the <a href="ezp-readme-003.html">readme</a> file.</p>
-    <p>Later problems get more interesting. They really do. Really really?</p>
+    <p>Later problems get more interesting. They really do. Really really? Yes. Really really.</p>
     
 
     </div> <!-- ezero_detail -->

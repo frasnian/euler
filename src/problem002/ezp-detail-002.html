@@ -35,8 +35,8 @@
     a recursion depth of ~3.52M. After thinking about different ways to accomplish this with template metaprogramming 
     (all of which are essentially ugly workarounds to the fact that all C++ TMP looping basically boils down to recursion of some sort), I decided I would just go the easy route and use the relaxations on <code>constexpr</code> in C++14 for this one. 
     <p>I initially had <a href="http://frasnian.blogspot.com/2015/02/euler-zero-doa.html" target="_blank">mixed feelings</a> about using 
-    <code>contexpr</code> functions, and it&apos;s what killed my interest in this project for a while (it turns out I was quite wrong about how challenging a zero-runtime implementation would be for some problems, even with relaxations on <code>constexpr</code> which is why this is interesting again).  That being said, I used them for this problem - and by doing so this problem is not one that presents difficulties in expressing as a zero-rumtime solution.</p>
-    <p>The code for the calculation-at-execution and zero-runtime solutions is exactly the same, the only difference is in the compiler options that determine when things get either evaluated (ZRT) or compiled (CAX).
+    <code>constexpr</code> functions, and it&apos;s what killed my interest in this project for a while (it turns out I was quite wrong about how challenging a zero-runtime implementation would be for some problems, even with relaxations on <code>constexpr</code> which is why this is interesting again).  That being said, I used them for this problem - and by doing so this problem is not one that presents difficulties in expressing as a zero-rumtime solution.</p>
+    <p>The code for the calculation-at-execution and zero-runtime solutions is exactly the same, the only difference is in the compiler options - most importantly, the definition of the <code>CONSTEXPR</code> macro: as the keyword (ZRT) or an empty definition (CAX).
     </p>
     <p>The code is pretty self-explanatory for this one, no additional commentary should be necessary.</p>
     
