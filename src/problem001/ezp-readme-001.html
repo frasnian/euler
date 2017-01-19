@@ -29,7 +29,7 @@
 
 <div id="ezero_solution">
     For a problem this simple, the calculation-at-execution version is pretty self-explanatory - see the code. Just count up to the limit (actually, <code>limit-1</code>) and if the current index is evenly divisible by 3 or 5, add the number to our running sum.<br/>
-    <br/>The zero-runtime version is also fairly self-explanatory.  It uses template meta-programming to count backwards from the upper bound to our terminating (explicit) specialization, at which point further recursion stops and we&apos;re done. It would have been just as easy to count <i>up</i> to the limit, but it makes no difference.
+    <br/>The zero-runtime version is also fairly self-explanatory.  It uses template meta-programming to recursively count up to our terminating (explicit) specialization, at which point further recursion stops and we&apos;re done.
     <p>Note that although the zero-runtime version only needs C++98, some compilers (such as MSVC) cap the depth of template recursions and have no means of changing this limit. Others provide a command-line option to increase the template recursion limit, which is required for and used by this solution.  The Intel C++ compiler supports a <code>-ftemplate-depth</code> option, but the environment I can test this with dies with an internal compiler error if <code>limit</code> is a value > 511 (icc16) or 629 (icc17). Let me know if you have any suggestions about making <code>icc</code> work with the template depth required here.
     </p>
 </div> <!-- ezero_solution -->
