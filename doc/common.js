@@ -12,8 +12,10 @@
 //
 function EulerZeroDefaults() {
   this.defaultCompiler = "";                                      // no preset default compiler  
-  this.wikiHome = "https://github.com/frasnian/euler-zero/wiki/"; // online wiki pages
+  this.wikiRoot = "https://github.com/frasnian/euler-zero/wiki/"; // online wiki pages
   this.optCompilerExplorer = false;                               // checkbox default
+  this.defaultDocHomeFrame = "dochome.html";                      // default doc home content frame
+  this.defaultDocHomeObj = 'ltab_doc_home';                       // default doc home menu item
   return this;
 };
 var preferences = new EulerZeroDefaults();
@@ -21,6 +23,23 @@ var preferences = new EulerZeroDefaults();
 
 function setTitle(sProblemNumber){
     document.title="Problem " +sProblemNumber+ " - Euler Zero";
+}
+
+var gProjectEulerRoot = "https://projecteuler.net/";
+var peWindow = null;
+
+function openProjectEulerRoot(){
+    if(!peWindow || (peWindow && peWindow.closed)){
+        peWindow = window.open(gProjectEulerRoot, 'pe_window');
+    }
+    else{
+        peWindow.location.href = gProjectEulerRoot;
+    }
+    //peWindow.focus();
+}
+
+function openProjectEulerProblem(sProblemNumber){
+    window.open(gProjectEulerRoot+ 'problem=' +toInteger(sProblemNumber), 'pe_window');
 }
 
 function showRequiredStandards(oRequiredStandards){
@@ -42,9 +61,12 @@ function pageAttributionContent(){
 }
 
 function pageHomeLinkContent(){
-    return  '<br/><a href="../../doc/index.html">Documentation Home</a>';
+    return  '<br/><a href="../../doc/index.html" target="_top">Documentation Home</a>';
 }
 
+function docHomeLinkContent(){
+    return  '<br/><a href="index.html">Documentation Home</a>';
+}
 
 function lookupCompilerInfoByTag(sCompilerTag){
     for (var i = 0; i < CompilerInformation.length; i++){

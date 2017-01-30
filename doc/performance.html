@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2017 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero project - Performance</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="stddocpage.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+</head>
+<body onload="standardDocPageElements(true)" style="height:99%;">
+<div id="content">
+<h1>Euler Zero - Performance &amp; Optimization Notes</h1><p>
+<p>As noted in the <a href="bkg_and_intro.html">Background &amp; Introduction page</a>, this is <u>not</u> an effort to find the most optimized calculation-at-execution (CAX) solution to each problem (especially for the easier ones). In some cases, the attempt at the CAX solution was viewed with an eye towards an optimal solution, but in many cases it probably wasn't - that's not the point of this experiment. Several problems (especially the easier or less interesting ones) just use a brute force or suboptimal-but-simple approach to calculate a correct solution in the CAX implementation just so that I had a solution to verify against and could then move on to the zero-runtime (ZRT) solution.
+</p>
+<p>Although what I actually get paid for is extremely focused on optimized runtime execution, for this project I'm more interested in the boundaries of C++ and compiler implementations while coming up with a zero-runtime solution. I do try to consider performance and come up with generalized solutions to most problems for the CAX implementation, but if a given problem is extremely easy or not particularly interesting I will probably spend less time on it. Again: calculation-at-execution performance is not the point here.
+</p>
+<p>A few additional notes:
+<ul>
+    <li>Solution suggestions and math notes for problems are available in an "overview" doc on the Project Euler website after you've already solved that problem, as well as a discussion thread for each problem. The math insights in the PE overview are almost always worth examining; the discussion threads are a decidely mixed bag -- JMHO, YMMV.<br/>&nbsp;</li>
+    <li>Although I usually at least skim the overview after solving a problem, as a general rule I do not read the discussion threads on the Project Euler web site after solving a problem -- I'm approaching the problems as a developer, not a theoretician: problem solved, so moving on. Solutions posted as CAX or ZRT are <i>always</i> posted before looking at any Project Euler problem commentary.<br/>&nbsp;</li>
+    <li>If I do read the overview or commentary from the Project Euler site after posting a solution and post a subsequent update based solely on that additional information, my original implementation for this project stays - any such update will be clearly marked as the resulting product of this additional information and have a different filename.<br/>&nbsp;</li>
+<!--
+    <li>Please don't send me an "optimal" solution that does calculation at runtime based <i>completely</i> on the "overview" given in Project Euler. Any idiot can simply transcribe something into a particular programming language if shown a solution formula. If it's not your own original thinking, I really don't want to see it (yes, this means you, "BRS").<br/>&nbsp;</li>
+-->
+</ul>
+</p>
+</div>
+</body>
+</html>

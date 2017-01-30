@@ -16,7 +16,6 @@ p {
     font-size: 1em;
 }
 
-
 pre {
     color: #000000;
     margin-left: 10px;
@@ -30,6 +29,41 @@ body {
     margin-left:8px;
     margin-right:0px;
 }
+
+.code_comment {
+    color: #008000;
+}
+
+.expandable_node {
+    xstyle:cursor:pointer;
+}
+
+.docnavtable {
+    height:100%;
+    background-color: #c0c0c0;    
+    margin-top:4px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+.ltab_doc_item:inactive {
+    background-color: #c0c0c0;
+    cursor: pointer;
+}
+
+.ltab_doc_item:hover {
+    background-color: #c0FFc0;    
+    cursor: pointer;
+}
+
+
+.ltab_doc_active {
+    color: #FFFFFF;
+    background-color: #008000;    
+    cursor: default;
+}
+
 
 .page_type_indicator {
     color: #a0a0a0;
@@ -83,6 +117,12 @@ code {
     xmargin-left: 10px;
     font-size: 1.2em;
 }
+
+.filename  {
+    font-family: "Coutier New", Courier, fixed;
+    font-size: .95em;
+}
+
 
 .fixed {
     color: #000000;

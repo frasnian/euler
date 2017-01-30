@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2017 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero project - Introduction</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="stddocpage.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+</head>
+<body onload="standardDocPageElements(true)" style="height:99%;">
+<div id="content">
+<h1>Euler Zero - Background &amp; Introduction</h1><p>
+<p>The code in this repo originally started out as an optimization challenge to myself - not only to develop a correct solution to the various problems presented by <a href="https://projecteuler.net/about" target="_blank">Project Euler</a>, but what is is the <I>absolute minimum runtime cost</I> possible for each? After looking at Problem 1 and thinking that it could easily be solved using template meta-programming, it immediately changed from an optimization challenge to a zero-runtime effort - I am no longer as interested in raw <a href="performance.html">calculation performance at runtime</a>, the goal for this project is <u>no</u> calculation at runtime. Obviously, problems with variable runtime inputs cannot have a zero execution time, but when you have fixed constraints and inputs a runtime cost of zero is (at least theoretically) possible in C++.
+</p>
+<p>
+The original plan was to have two variants for each solution - a proof-of-correctness version calculating the solution at runtime, and a zero-runtime solution that pre-calculated an answer using template meta-programming and/or constexpr functions. The relaxations on <code>constexpr</code> functions introduced in C++14 allowed some of the solutions to have the exact same code, so not all solutions have two variants. Each problem will be in its own directory in the repo, with build details and brief introductory notes in a "readme" file and any implementation notes or more detailed commentary in a "detail" file in that same directory.
+</p>
+<p>
+Using the C++14 relaxations on `constexpr` functions for a few problems seemed to make zero-runtime solutions less 
+challenging so I forgot about it until I stumbled across my draft code for a solution to a problem a colleague had 
+shown me almost two years ago. The problem turned out to be from Project Euler, so after finishing my draft 
+implementation (why not, right?), turning it into a zero-runtime solution proved more challenging than I originally 
+expected, so... here we are. It became an interesting experiment again, especially for some of the more difficult problems.
+</p>
+<p>
+<b>What does "Zero-runtime" mean here?</b>
+</p>
+<p>
+Exactly what it sounds like: forcing the compiler to pre-calculate the correct answer without generating any code to do so at runtime.  A simple example is Problem 1 - a zero-runtime solution (comments and other stuff from the actual solution are elided here) is just:
+</p>
+<p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:none gray;border-width:1px 1px 1px 1px;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> limit <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1000</span>;
+
+<span style="color: #008800; font-weight: bold">template</span><span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">&gt;</span>
+<span style="color: #008800; font-weight: bold">struct</span> NextMultiple {
+    <span style="color: #008800; font-weight: bold">enum</span> { sum <span style="color: #333333">=</span> (((i <span style="color: #333333">%</span> <span style="color: #0000DD; font-weight: bold">3</span>) <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">0</span>) <span style="color: #333333">||</span>  ((i <span style="color: #333333">%</span> <span style="color: #0000DD; font-weight: bold">5</span>) <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">0</span>) <span style="color: #333333">?</span> i <span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">0</span>) 
+               <span style="color: #333333">+</span> (NextMultiple<span style="color: #333333">&lt;</span>i <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">&gt;::</span>sum)
+         };
+};
+
+<span style="color: #008800; font-weight: bold">template</span><span style="color: #333333">&lt;&gt;</span>
+<span style="color: #008800; font-weight: bold">struct</span> NextMultiple<span style="color: #333333">&lt;</span>limit<span style="color: #333333">&gt;</span> {
+    <span style="color: #008800; font-weight: bold">enum</span> { sum <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span> };
+};
+
+<span style="color: #333399; font-weight: bold">long</span> lSum <span style="color: #333333">=</span> NextMultiple<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">3</span><span style="color: #333333">&gt;::</span>sum;
+</pre></div>
+</p>
+<p>
+The compiler will generate the following from the above code:
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:none gray;border-width:1px 1px 1px 1px;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #997700; font-weight: bold">lSum:</span>
+     <span style="color: #0066BB; font-weight: bold">.quad</span>   <span style="color: #0000DD; font-weight: bold">233168</span>
+</pre></div>
+</p>
+<p>
+And there's your answer. Runtime cost: <b>zero</b>.
+</p>
+</div>
+</body>
+</html>

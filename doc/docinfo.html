@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2015,2016 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero - Customizing the docs &amp; options</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="stddocpage.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+</head>
+<body onload="standardDocPageElements(true)" style="height:99%;">
+<div id="content" style="height:100%;">
+<h1>Euler Zero - About the local docs &amp; customizing options</h1>
+Each solution has its own 'readme' and 'detail' files that are located in the directory for that solution. These files contain the following information:
+
+<p><b>"Readme" files:</b><br/>
+The "readme" files are intended to be your friend. They can generate build command lines for each solution/variant in the repository.
+These files contain a brief summary of the original problem from Project Euler (problems that do not have a simple text description or require graphic elements will not be included in readme files beyond a summary - the full problem will be in the detail file). They will include any relevant build notes, and as noted, can generate build command lines for compilers supported by that solution. The readme file will also have the C++ Standard and minimum compiler versions required for solution variants.
+</p>
+<p>
+The default compiler and build options used for command lines generated the "readme" files are documented <a href="buildinfo.html">here</a>, and can be customized with a <span class="filename">.euler&#x2011;zero&#x2011;prefs.js</span> file (see below).
+</p>
+
+<p><b>"Detail" files:</b><br/>
+The "detail" files contain any implementation notes and the approach taken for that solution, as well as the full problem description from Project Euler. They are basically the "<i>WTF were you thinking?</i>" pages.
+Any differences between calculation-at-execution and zero-runtime variants are documented in this file, and (possibly) more detailed descriptions and notes about the source code beyond that provided in the source file comments.
+</p>
+
+<p><b>The <span class="filename">.euler-zero-prefs.js</span> file</b><br/>
+The default build options used by the <span class="filename">readme<i>NNN</i>.html</span> for each solution to generate command 
+lines can be overridden with a <span class="filename">.euler&#x2011;zero&#x2011;prefs.js</span> file. This file is listed
+in the <span class="filename">.gitignore</span> for the repo, so go nuts. A <span class="filename">default&#x2011;euler&#x2011;zero&#x2011;prefs.js</span> file has commentary and details about what you can change here. 
+The default prefs file isn't included by any doc files - it&apos;s only intended as documentation for what you can customize and as a template for your own local <span class="filename">.euler&#x2011;zero&#x2011;prefs.js</span> file.
+</p>
+<p>You can also change the default page loaded in the main content frame from <span class="filename">index.html</span> (example: you may want to set it to the Solution Index page - after reading the other docs, of course :), various options such as Compiler Explorer (see below), etc.
+</p>
+
+<p><b>Doc colors, formatting, etc.</b><br/>
+Most of this can tweaked with <span class="filename">euler&#x2011;zero.css</span> or <span class="filename">common.js</span>. The javascript may be ugly in some places, but it&apos;s simple and serviceable. I did not want to have dependencies on external things like Node.js and -again- this is <i>not</i> a serious project, so a quick-and-dirty approach is sometimes used.<!-- I don&apos;t think any more needs to be said here: if you can't handle CSS and javascript, then C++ is probably not the language for you. Not to sound like a language snob, but that&apos;s just a fact. -->
+</p>
+
+<p><b>Compiler Explorer option</b><br/>
+<a href="https://godbolt.org/" target="_blank">Compiler Explorer</a> is an online tool developed by Matt Godbolt, 
+and it absolutely rocks. If you want to test code against various compilers and compiler versions that you might 
+not have installed, it&apos;s an ideal solution to check compiler compatibility and assembly output for your code. 
+It also has a code editing pane, so it&apos;s not cut-and-paste only. I use this thing all the time, and in all 
+likelihood you probably will to (he recently created a Patreon page for this project - so please chip in to help
+fund it or buy him a beer or something. He deserves it for providing this service for <i>years</i>).
+</p>
+<p>
+As noted on the <a href="buildinfo.html">Build Info</a> page, it's actually much easier to use Compiler Explorer if all you want 
+is the generated assembly - paste in the appropriate compiler options from the solution <span class="filename">readme</span> file, 
+paste in the source code for the variant you want into the input window, choose a supported compiler and <I>voila!</I> This has the 
+added benefit of eliding extraneous section info (e.g. <code>comment,ident,note</code>, etc.) so the output is a lot cleaner.
+</p>
+<p>
+I use this option pretty much all of the time, so you can enable it by default in <span class="filename">.euler&#x2011;zero&#x2011;prefs.js</span>.
+Setting this option causes the <span class="filename">readme</span> to blow off options like input &amp; output filenames and "generate assembly" when generating a command line, as they are already implied. 
+Note that online compilation environments obviously cannot handle local include files, so to accommodate this restriction 
+some solutions have source files with a lot of data that would normally be included in a separate header file.
+</p>
+
+
+</body>
+</html>

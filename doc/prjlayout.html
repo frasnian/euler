@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2015,2016 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero - Source &amp; Project layout</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="stddocpage.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+</head>
+<body onload="standardDocPageElements(true)" style="height:99%;">
+<div id="content">
+<h1>Euler Zero - Source files &amp; project layout</h1>
+<p>
+<b>Source Files</b><br/>
+Each problem is in its own directory underneath the<code>src</code> directory in the repo, containing source code and html "readme" and "detail" files with solution-specific build info, notes, implementation notes, etc. for that problem. In general, the structure is:<br/>
+</p>
+<div class="indent"><pre style="font-size:1.1em">
+src/problem<i>NNN</i>
+  problem<i>NNN</i>/
+      euler<i>NNN</i>-zrt.cpp      <font color="#008000"># solution source: zero-runtime/possibly combined (see below)</font>
+      euler<i>NNN</i>-cax.cpp      <font color="#008000"># may or may not exist, see below</font>
+      ezp-readme-<I>NNN</I>.html   <font color="#008000"># build info, brief intro</font>
+      ezp-detail-<i>NNN</i>.html   <font color="#008000"># approach, implementation details, notes, etc.</font>
+      <font color="#008000"># any additional files will be detailed in ezp-readme-<I>NNN</I>.html</font>
+</pre></div>
+<p>The way most of the solutions were developed was by creating an initial calculation-at-execution (CAX) implementation first, to check the correctness of the generated answer -  it is <i>much</i> easier to debug a normal program vs code that essentially executes during compilation (there is nothing to debug). After verifying that a solution is correct, I&apos;ll convert it to a zero-runtime (ZRT) implementation. If the calc-at-execution and zero-runtime variants are essentially the same, only the final implementation will be added to the repo (despite being capable of being built as either a ZRT or CAX implementation, it will have the <code>-zrt</code> suffix.
+</p>
+<p>Although I try to design the initial CAX version with an eye on how it will need to be converted to a ZRT implementation, in some cases the resulting ZRT implementation will differ significantly from the CAX version. Also, sometimes a ZRT implementation that performs calculations at runtime (intead of at compilation) will be completely sub-optimal when compared with a different approach intended to calculate everything at runtime. In other words, if all of the work is supposed to be done during compilation it can be a more "expensive" approach to deal with any limitations or contraints imposed by <code>constexpr</code> functions or template meta-programming - which is acceptable because it never actually happens when the program is executed. These are the types of situations in which both solution variants are included.  In these cases, the <code>-cax</code> suffix identifies the calculation-at-execution version.</p>
+<p>Some solutions may have additional variants - if so, details will be in the readme file for that solution.
+</p>
+</body>
+</html>

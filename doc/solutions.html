@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--
+// <copyright>
+// This is a part of Euler Zero - see https://github.com/frasnian/euler-zero
+// Copyright (c) 2015,2016 David Starr
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+// </copyright>
+-->
+<head>
+<meta charset="UTF-8"> 
+<title>Euler Zero - Solution Index</title>
+<link rel="stylesheet" type="text/css" href="euler-zero.css">
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="stddocpage.js"></script>
+<script type="text/javascript" src=".euler-zero-prefs.js"></script>
+<script type="text/javascript" src="euler-zero-problems.js"></script>
+<script language="javascript"><!--
+function indexPageSetup()
+{
+    var sOut = '<table>';
+    
+    sOut +='<tr>'
+         + '<td><b>Problem</b></td>'
+         + '<td style="padding-left:10px;"><b>Description</b></td>'
+         + '<td style="padding-left:10px;"><b>Links</b></td>'
+         + '</tr>'
+         ;
+    for (var i = 0; i < EulerZeroProblems.length; ++i){
+        var sProblem = EulerZeroProblems[i].problemNumber;
+        sOut+= '<tr>'
+            +  '<td align="right">' +parseInt(sProblem) + '</td>'
+            +  '<td style="padding-left:10px;">' +EulerZeroProblems[i].name+ '</td>'
+            +  '<td style="padding-left:10px;">' 
+                + '<a href="../src/problem' +sProblem+ '/ezp-readme-' +sProblem+ '.html">readme</a> '
+                + '| <a href="../src/problem' +sProblem+ '/ezp-detail-' +sProblem+ '.html">detail</a> '
+//                + '| <a href="https://projecteuler.net/problem=' +parseInt(sProblem)+ '">Original problem page at Project Euler web site</a>'
+            + '</td>'
+            + '</tr>'
+        ;
+    }
+    sOut += '</table>';
+    document.getElementById("EZeroSolutionIndex").innerHTML = sOut;
+}
+--></script>
+
+</head>
+<body onload="indexPageSetup(), standardDocPageElements(true)" style="height:99%;">
+<div id="content" style="height:100%;">
+<h1>Euler Zero - Solutions</h1><p>
+<div id="EZeroSolutionIndex"></div>
+</div> <!-- content -->
+</body>
+</html>

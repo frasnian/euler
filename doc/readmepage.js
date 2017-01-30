@@ -316,7 +316,7 @@ function standardReadmePageElements() {
     buildCommands.innerHTML = regenerateBuildCommands(false);
     content.appendChild(buildCommands);
     
-    document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();
+    //document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();
     document.getElementById("attribution").innerHTML = pageAttributionContent();
     
     // fixups for Problem & Solution sections:   

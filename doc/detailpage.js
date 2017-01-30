@@ -49,7 +49,7 @@ function standardDetailPageElements() {
     document.getElementById("doc_pageBodyTitle").innerHTML = pageBodyTitleContent("detail");
     document.getElementById("readme_topnav").innerHTML = pageTopNavContent("detail");
     
-    document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();
+    //document.getElementById("ezero_doc_index").innerHTML = pageHomeLinkContent();
     document.getElementById("attribution").innerHTML = pageAttributionContent();
     
     // fixups for Problem & Solution sections:   
